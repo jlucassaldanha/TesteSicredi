@@ -2,6 +2,7 @@ import logging
 from pathlib import Path
 from typing import Any
 import json
+import csv
 
 
 def setup_logger(log_file: str = "processamento.log") -> logging.Logger:
@@ -70,3 +71,23 @@ def validate_and_filter_record(record: dict[str, Any], logger: logging.Logger) -
 
   record["cpf"] = clean_cpf
   return True, "Válido"
+
+def export_csv(
+  records: list[dict[str, Any]],
+  exit_path: Path,
+  logger: logging.Logger
+) -> None:
+  """Gera o arquivo CSV em UTF-8 com os registros aprovados."""
+  fields = ["id", "nome", "cpf"]
+
+  try:
+    with open(exit_path, mode="w", newline="", encoding="utf-8") as file:
+      writer = csv.DictWriter(
+        file, fieldnames=fields, delimiter=";", extrasaction="ignore"
+      )
+      writer.writeheader()
+      writer.writerows(records)
+    logger.info(f"Arquivo CSV '{exit_path.name}' gerado com sucesso")
+  except Exception as e:
+    logger.error(f"Falha ao gerar arquivo CSV: {e}")
+    raise IOError(f"Não foi possível salvar o CSV: {e}")
