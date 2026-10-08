@@ -15,7 +15,7 @@ def load_json(file_path: Path, logger: logging.Logger) -> list[dict[str, Any]]:
     with open(file_path, "r", encoding="utf-8") as file:
       data = json.load(file)
       if not isinstance(data, list):
-        logger.error("Formato JSON invélido: o conteúdo raiz deve ser uma lista")
+        logger.error("Formato JSON inválido: o conteúdo raiz deve ser uma lista")
         raise TypeError("O JSON precisa ser uma lista de registros")
       return data
   except json.JSONDecodeError as e:
