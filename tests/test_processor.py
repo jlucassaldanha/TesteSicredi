@@ -1,10 +1,10 @@
-import json
 import unittest
 from pathlib import Path
 
-from core_processor import validate_and_filter_record
-from file_processor import export_csv, load_json
-from logger_setup import setup_logger
+from ..processor.core_processor import validate_and_filter_record
+from ..processor.file_processor import load_json
+from ..utils.logger_setup import setup_logger
+
 
 class TestProcessadorSolicitacoes(unittest.TestCase):
   def setUp(self):
