@@ -1,5 +1,7 @@
-from processor import setup_logger, load_json, validate_and_filter_record, export_csv
 from pathlib import Path
+
+from processor import export_csv, load_json, setup_logger, validate_and_filter_record
+
 
 def process_file(
   entry_file_path: str = "solicitacoes.json",

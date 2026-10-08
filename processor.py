@@ -1,8 +1,8 @@
+import csv
+import json
 import logging
 from pathlib import Path
 from typing import Any
-import json
-import csv
 
 
 def setup_logger(log_file: str = "processamento.log") -> logging.Logger:
