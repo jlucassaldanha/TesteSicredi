@@ -30,6 +30,8 @@ def export_csv(
   """Gera o arquivo CSV em UTF-8 com os registros aprovados."""
   fields = ["id", "nome", "cpf"]
 
+  exit_path.parent.mkdir(parents=True, exist_ok=True)
+
   try:
     with open(exit_path, mode="w", newline="", encoding="utf-8") as file:
       writer = csv.DictWriter(

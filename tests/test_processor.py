@@ -8,7 +8,7 @@ from ..utils.logger_setup import setup_logger
 
 class TestProcessadorSolicitacoes(unittest.TestCase):
   def setUp(self):
-    self.logger = setup_logger("test_execucao.log")
+    self.logger = setup_logger("logs/test_execucao.log")
 
   def test_validacao_registro_aprovado_valido(self):
     rec = {"id": 1, "nome": "Maria Silva", "cpf": "123.456.789-00", "status": "APROVADO"}

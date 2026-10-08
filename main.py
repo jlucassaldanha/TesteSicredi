@@ -7,7 +7,7 @@ from utils.logger_setup import setup_logger
 
 def process_file(
   entry_file_path: str = "solicitacoes.json",
-  exit_file_path: str = "aprovados.csv"
+  exit_file_path: str = "out/aprovados.csv"
 ) -> None:
   logger = setup_logger()
   logger.info("=== Início do processamento de solicitações ===")
