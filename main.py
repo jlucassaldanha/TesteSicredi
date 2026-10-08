@@ -6,3 +6,6 @@ def main():
   logger.info("=== Início do processamento de solicitações ===")
 
   logger.info("=== Processamento concluído com sucesso ===")
+
+if __name__ == "__main__":
+  main()
