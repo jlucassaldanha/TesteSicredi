@@ -1,6 +1,8 @@
 from pathlib import Path
 
-from processor import export_csv, load_json, setup_logger, validate_and_filter_record
+from core_processor import validate_and_filter_record
+from file_processor import export_csv, load_json
+from logger_setup import setup_logger
 
 
 def process_file(
@@ -25,7 +27,7 @@ def process_file(
   total_failed = 0
 
   for rec in data:
-    is_valid, reason =  validate_and_filter_record(rec, logger)
+    is_valid, reason =  validate_and_filter_record(rec)
     if is_valid:
       approved_records.append(rec)
     else:
