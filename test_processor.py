@@ -30,5 +30,22 @@ class TestProcessadorSolicitacoes(unittest.TestCase):
     with self.assertRaises(FileNotFoundError):
       load_json(Path("arquivo_que_nao_existe.json"), self.logger)
 
+  def test_validacao_campos_ausentes(self):
+    rec = {"id": 1, "nome": "Maria Silva", "cpf": "123.456.789-00"}
+    is_valid, reason = validate_and_filter_record(rec)
+    self.assertFalse(is_valid)
+    self.assertIn("campos obrigatórios ausentes", reason)
+
+  def test_json_sintaxe_invalida(self):
+    path_corrupted = Path("corrompido.json")
+    with open(path_corrupted, "w", encoding="utf-8") as file:
+      file.write("{ json_invalido: true ")
+
+    with self.assertRaises(ValueError):
+      load_json(path_corrupted, self.logger)
+
+    if path_corrupted.exists():
+      path_corrupted.unlink()
+
 if __name__ == "__main__":
   unittest.main()
